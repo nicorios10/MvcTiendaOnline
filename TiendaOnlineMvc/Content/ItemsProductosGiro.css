@@ -1,0 +1,48 @@
+﻿body {
+}
+.contenedor{
+    position:relative;
+    height: 240px;
+    width: 240px;
+    margin: auto;
+    margin: 30px;
+    border-radius: 10px;
+}
+.carta{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: 3s;
+    box-shadow: 6px 6px 15px rgb(128, 128, 128);
+    border-radius: 2px;
+}
+.carta:hover{
+    transform: rotateY(180deg);
+}
+.lado{
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    position: absolute;
+}
+.frente{
+    background: white;
+    border-radius: 10px;
+}
+.atras{
+    background: white;
+    transform: rotateY(180deg);
+    text-align: center;
+    border-radius: 10px;
+}
+img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.thumbnail{
+    margin-bottom: 12px;
+    text-align: center;
+}

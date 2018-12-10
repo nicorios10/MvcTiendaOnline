@@ -1,0 +1,55 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+/*imagen del header*/
+
+.jumbotron {
+    background: #212121 url('Images/Site/banner.jpg');
+    color: white;
+    font-size: 15px;
+}
+
+
+/*Footer*/
+/*Se van a ver afectadas todas las clases que contengan "icon-" y que esten dentro del .footer */
+.footer .social [class^="icon-"] {
+    display: inline-block;
+    color: #333;
+    text-decoration: none;
+    font-size: 30px;
+    margin:8px;
+    padding: 10px;
+    background: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    line-height: 40px;
+}
+
+
+
+
+

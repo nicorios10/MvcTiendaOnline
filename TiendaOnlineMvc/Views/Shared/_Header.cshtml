@@ -1,0 +1,30 @@
+﻿<header id="top">
+    <div class="animated fadeInDown navbar navbar-default navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink(" ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand glyphicon glyphicon-home" })
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Productos", "Index", "StoreFront", new { id = 1 }, null)</li>
+                    <li>@{Html.RenderAction("ResumenDeLaCompra", "ShoppingCart");}</li>
+                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>        
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session[TiendaOnlineMvc.Utilities.Strings.KeyCurrentUser] != null)
+                    {
+                        var user = (TiendaOnlineMvc.Models.Customer)Session[TiendaOnlineMvc.Utilities.Strings.KeyCurrentUser];
+                        <li>@Html.ActionLink(user.Username, "Index", "Home")</li>
+                        <li>@Html.ActionLink("Salir", "Logout", "Home", new { area = "" }, null)</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>

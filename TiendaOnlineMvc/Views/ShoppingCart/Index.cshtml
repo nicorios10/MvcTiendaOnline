@@ -1,0 +1,103 @@
+﻿@using System.Globalization
+@model TiendaOnlineMvc.ViewModels.CarroDeCompraViewModel
+
+@{
+    ViewBag.Title = "Su carro de compras";
+    CultureInfo moneda = new CultureInfo("es-AR");
+}
+<br />
+<div class="col-md-12">
+    <ul class="animated slideInLeft breadcrumb">
+        <li>
+            <a>@Html.ActionLink("Inicio","Index","Home")</a>
+        </li>
+        <li>Carro de Compras</li>
+    </ul>
+</div>
+<br />
+<h3 class="animated bounceInRight text-center">
+     <span>
+         <img src="~/Content/Images/Carrito/e-commerce-3.png" style="width:auto"/>
+         <p class="animated bounceInLeft">Su carro de Compras:</p>
+     </span>
+    
+</h3>
+<div class="container text-center ">
+    <h3 id="update-message" class="text-info ">
+    </h3>
+</div>
+
+@if (Model.ElementosDelCarro.Count==0)
+{
+    <a class="btn-danger" href="~/StoreFront/Index/1">Su carro de compras esta vacio, Seguir Comprando</a>
+}
+else
+{
+    <div class="container">
+        <table class="animated slideInLeft table-responsive table-bordered table-striped table">
+            <tr>
+                <th>
+                    Nombre del Producto
+                </th>
+                <th>
+                    Precio (c/u)
+                </th>
+                <th>
+                    Cantidad
+                </th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.ElementosDelCarro)
+            {
+                <tr id="row-@item.ProductId">
+                    <td>
+                        @Html.ActionLink(item.Product.Name, "Detalles", "Products", new { id = item.ProductId }, null)
+                    </td>
+                    <td>
+                        @item.Product.Price
+                    </td>
+                    <td id="item-count-@item.ProductId">
+                        @item.Count
+                    </td>
+                    <td>
+                        @((item.Product.Price * item.Count).ToString("c", moneda))
+                    </td>
+                    <td>
+                        <a href="" class="RemoveLink glyphicon glyphicon-trash" data-id="@item.ProductId">
+                            Remover Producto
+                        </a>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    Total
+                </td>
+                <td></td>
+                <td></td>
+                <td id="cart-total" class="text-success">
+                    <b>@Model.TotalDelCarro.ToString("C", moneda)</b>
+                </td>
+            </tr>
+        </table>
+
+        <br />
+        <div class="text-center">
+            <p class="animated rotateInDownLeft button btn btn-default ">
+                <a href="~/StoreFront/Index/1">Seguir Comprando</a>
+            </p>
+
+        
+            <button class="animated rotateInDownRight button btn btn-success">
+                @Html.ActionLink(" Checkout", "Index", "Checkout", new { @class = "glyphicon glyphicon-shopping-cart" })
+            </button>
+        </div>
+        
+    </div><br />
+}
+
+
+
+
+

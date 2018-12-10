@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Tienda Online Mvc</title>
+    <link href='https://fonts.googleapis.com/css?family=Cuprum' rel='stylesheet' type='text/css'>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    @Html.Partial("_Header")
+    @RenderBody()
+    @Html.Partial("_Footer")
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+    @if (TempData[TiendaOnlineMvc.Utilities.Strings.KeyMensajeDeAccion] != null)
+    {
+        <script>
+            $(document).ready(function () {
+                App.showMessage(true, '@TempData[TiendaOnlineMvc.Utilities.Strings.KeyMensajeDeAccion].ToString()');
+            });
+        </script>
+    }
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".RemoveLink").click(function (e) {
+                e.preventDefault();
+            //obtiene el id del enlace
+            var recordToDelete = $(this).attr("data-id");
+            if (recordToDelete != '') {
+                // Realiza la publicacion ajax
+                $.post("/ShoppingCart/RemoverDelCarro", { "id": recordToDelete },
+                    function (data) {
+                        // Las solicitudes exitosas llegan ak
+                        // Actualiza los elementos de la página
+                        if (data.ConteoDeElementos == 0) {
+                            $('#row-' + data.BorrarId).fadeOut('slow');
+                        } else {
+                            $('#item-count-' + data.BorrarId).text(data.ConteoDeElementos);
+                        }
+                        $('#cart-total').text(data.TotalDelCarro);
+                        $('#update-message').text(data.Mensaje);
+                        $('#cart-status').text('Cart (' + data.ConteoDelCarro + ')');
+                    });
+                }   
+            });
+        })
+    </script>
+</body>
+</html>

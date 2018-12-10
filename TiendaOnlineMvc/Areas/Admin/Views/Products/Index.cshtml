@@ -1,0 +1,76 @@
+﻿@model IEnumerable<TiendaOnlineMvc.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container">
+    <br />
+    <div class="col-md-12">
+        <ul class="breadcrumb">
+            <li>
+                <a>@Html.ActionLink("Inicio", "Index", "Home")</a>
+            </li>
+            <li>Administrar Productos</li>
+        </ul>
+    </div>
+    <hr />
+    <h2>Productos</h2>
+
+    <p class="btn btn-default">
+        @Html.ActionLink("Crear nuevo", "Crear")
+    </p><br /><br />
+    <table class="table">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Categoria
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Precio
+            </th>
+            <th>
+                Descripcion
+            </th>
+            <th>
+                Actualizacion
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastUpdated)
+                </td>
+                <td class="btn-group">
+                    <button class="btn btn-secondary">@Html.ActionLink("Editar", "Editar", new { id = item.Id })</button>
+                    <button class="btn btn-secondary">@Html.ActionLink("Detalles", "Detalles", new { id = item.Id })</button>
+                    <button class="btn btn-secondary">@Html.ActionLink("Borrar", "Borrar", new { id = item.Id })</button> 
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

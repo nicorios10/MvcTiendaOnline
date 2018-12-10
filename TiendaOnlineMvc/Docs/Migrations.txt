@@ -1,0 +1,7 @@
+﻿/*esta migracion se ejecuta solo una vez*/
+Enable-Migrations -ContextTypeName TiendaOnlineMvcContext -MigrationsDirectory Migrations\TiendaOnlineMvc
+
+/*siempre que su modelo cambie y la base de datos de actualizaciones se pueda ejecutar en cualquier momento*/
+add-migration -ConfigurationTypeName TiendaOnlineMvc.Migrations.TiendaOnline.Configuration "InitialCreate"
+
+update-database -ConfigurationTypeName TiendaOnlineMvc.Migrations.TiendaOnline.Configuration

@@ -1,0 +1,64 @@
+﻿@model TiendaOnlineMvc.Models.Category
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+@Styles.Render("~/Content/css")
+
+<br />
+<div class="col-md-12">
+    <ul class="breadcrumb">
+        <li>
+            <a>@Html.ActionLink("Inicio", "Index", "Home")</a>
+        </li>
+        <li>Productos por categorias</li>
+    </ul>
+</div>
+<hr />
+
+<div class="container">
+    <div class="animated bounceInDown row">
+        <div class="col-md-3 text-center  thumbnail">
+            <h2>@Html.ActionLink("TV, Audio & Video", "Index", "StoreFront", new { id = 1 }, null)</h2>
+        </div>
+        <div class="col-md-3 text-center thumbnail">
+            <h2>@Html.ActionLink("Computacion", "Index", "StoreFront", new { id = 2 }, null)</h2>
+        </div>
+        <div class="col-md-3 text-center thumbnail">
+            <h2>@Html.ActionLink("Electrodomesticos", "Index", "StoreFront", new { id = 3 }, null)</h2>
+        </div>
+        <div class="col-md-3 text-center thumbnail">
+            <h2>@Html.ActionLink("Celulares", "Index", "StoreFront", new { id = 5 }, null)</h2>
+        </div>
+    </div>
+
+    <hr /><br />
+    <div class="row">
+        @foreach (var producto in Model.Products)
+        {
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="thumbnail text-center">
+                    <div class="contenedor text-center">
+                        <div class="carta">
+                            <div class="animated slideInUp lado frente">
+                                <img src="@Url.Content(producto.ImageUri)" alt="La imagen no se ha podido cargar correctamente" />
+                            </div>
+                            <div class="lado atras">
+                                <img src="@Url.Content(producto.ImageUri)" alt="Sin Imagen" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="caption">
+                        <h3>@producto.Name</h3>
+                        <h4>@producto.Description</h4>
+                        <h5>$@producto.Price</h5>
+                        @Html.ActionLink("Ver Detalles", "Detalles", "Products", new { id = producto.Id }, new { @class = "btn btn-default" })
+                        @Html.ActionLink("Agregar Al Carro", "AgregarAlCarro", "ShoppingCart", new { id = producto.Id }, new { @class = "btn btn-info" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<hr /><br />

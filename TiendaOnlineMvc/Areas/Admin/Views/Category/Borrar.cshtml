@@ -1,0 +1,17 @@
+﻿@model TiendaOnlineMvc.Models.Category
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>¿Esta seguro que quiere borrar la categoria <b>@Html.DisplayFor(model => model.Name)<b/> ? </h3>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default" />
+        <hr />
+        @Html.ActionLink("Volver a la lista", "Index")
+    </div>
+}

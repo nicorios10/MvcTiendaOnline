@@ -1,0 +1,94 @@
+﻿@model TiendaOnlineMvc.Areas.Admin.Models.ProductViewModel
+
+@{
+    ViewBag.Title = "Editar Productos";
+}
+
+<h2>Editar</h2>
+
+
+<div class="container">
+    <div class="row">
+        <section id="mainContent" class="col-md-8">
+            <h2>Edición de Producto</h2>
+            <br /><br />
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                //IMPORTANTE: se incrustan como input hidden (campo oculto) el Id del plato, y la ImagenUri, para que luego vaya junto con el resto de la información al server, y se bindee el viewModel completo.
+                @Html.EditorFor(model => model.Id)
+                @Html.EditorFor(model => model.ImageUri)
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(model => model.CategoryId, Model.Categories, "Seleccione..", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @if (Model.ImageUri != "")
+                            {
+                                <img src="@Url.Content(Model.ImageUri)" alt="Image" class="img-responsive" />
+                                <p class="text-info">Si desea modificar la imagen, seleccione una nueva de su PC</p>
+                            }
+                            else
+                            {
+                                <p class="text-info">Actualmente SIN IMAGEN. Puede agregar una...</p>
+                            }
+
+                            @Html.TextBoxFor(model => model.Image, new { type = "file", htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-8">
+                            <input type="submit" value="Efectuar edición" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Volver", "Index")
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

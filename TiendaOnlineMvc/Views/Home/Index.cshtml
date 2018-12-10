@@ -1,0 +1,87 @@
+﻿
+@using TiendaOnlineMvc.ViewModels
+@model IndexViewModel
+@{
+    ViewBag.Title = "Nicolás Rios";
+}
+
+@Styles.Render("~/Content/css")
+
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+
+<div class="jumbotron container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="animated jello col-md-7 ">
+                <p>
+                    <h2> Nuestros clientes confian en nosotros.</h2>
+                    <h3> Somos conocidos por brindar el mejor servicio posible</h3>
+                    <h2>Mejores precios</h2>
+                    <h3>100% satisfaccion garantizada</h3>
+                    <h2>Devoluciones gratuitas en todo por 3 meses.</h2>
+                </p>
+            </div>
+            <div class="">
+                @if (Session[TiendaOnlineMvc.Utilities.Strings.KeyCurrentUser] == null)
+                {
+                    @Html.Partial("_LogIn", Model.LoginViewModel)
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Imagen doble-->
+
+<div class="animated bounceInUp contenedorPrincipal">
+    <section id="wrapper" class="skewed">
+
+        <div class="layer bottom">
+            <div class="content-wrap">
+                <div class="content-body">
+                    <h1 class="tituloh1">La mejor tecnologia.</h1>
+                    <p class="parrafos">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut quisquam temporibus dolore vero reiciendis atque debitis. Sequi at consequatur deserunt?</p>
+                </div>
+                <img class="imagenes" src="~/Content/Images/ImagenesCPU/img1.png" />
+            </div>
+        </div>
+
+        <div class="layer top">
+            <div class="content-wrap">
+                <div class="content-body">
+                    <h1 class="tituloh1">Todo el dia</h1>
+                    <p class="parrafos">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut quisquam temporibus dolore vero reiciendis atque debitis. Sequi at consequatur deserunt?</p>
+                </div>
+                <img class="imagenes" src="~/Content/Images/ImagenesCPU/img2.png" />
+            </div>
+        </div>
+
+        <div class="handle">
+
+        </div>
+    </section>
+</div>
+
+
+
+
+
+<div class="container">
+    <img src="~/Content/Images/Slider/credit-card-banner2.png" />
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/Scripts/login.js")" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            Login.init();
+        });
+    </script>
+}
+
+<script src="~/Scripts/main.js"></script>
+
